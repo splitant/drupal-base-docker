@@ -13,7 +13,7 @@ services:
       - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
 #      - /path/to/mariadb/data/on/host:/var/lib/mysql # Use bind mount
     ports:
-      - 3036:36
+      - 3370:3036
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -39,7 +39,7 @@ services:
 #      PHP_XDEBUG_REMOTE_HOST: 10.0.75.1 # Windows, Docker < 18.03
 #      PHP_XDEBUG_REMOTE_LOG: /tmp/php-xdebug.log
     volumes:
-      - ./:/var/www/html
+      - ./web:/var/www/html
     ports:
       - 8080:82
 ## For XHProf and Xdebug profiler traces
