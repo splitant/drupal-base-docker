@@ -40,8 +40,6 @@ services:
 #      PHP_XDEBUG_REMOTE_LOG: /tmp/php-xdebug.log
     volumes:
       - ./web:/var/www/html
-    ports:
-      - 8080:82
 ## For XHProf and Xdebug profiler traces
 #      - files:/mnt/files
 
@@ -58,7 +56,9 @@ services:
       NGINX_VHOST_PRESET: $NGINX_VHOST_PRESET
 #      NGINX_DRUPAL_FILE_PROXY_URL: http://example.com
     volumes:
-      - ./:/var/www/html
+      - ./web:/var/www/html
+    ports:
+      - 8087:80
 
   mailhog:
     image: mailhog/mailhog
