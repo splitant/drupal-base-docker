@@ -1,8 +1,13 @@
 #!/bin/bash
 
-attributes_names_env=('PROJECT_NAME' 'PROJECT_BASE_URL' 'DB_NAME' 'DB_USER' 'DB_PASSWORD' 'DB_ROOT_PASSWORD' 'DB_HOST' 'DB_DRIVER')
+configurations=(`sed -n '/^### CONFIG_OVERRIDDEN ###/,/^#########################/p;/^#########################/q' .env | sed '1d;$d'`)
 
-data_default_env=('drupal8_test' 'drupal8.test.localhost' 'drupal' 'drupal' 'drupal' 'drupal' 'mariadb' 'mysql')
+for index in ${!configurations[*]}
+do
+	IFS='=' read -r -a part <<< "${configurations[$index]}"
+	attributes_names_env[$index]=${part[0]};
+	data_default_env[$index]=${part[1]};
+done
 
 echo -e "---------------------------------------"
 echo -e "| Docker settings project (.env file) |"
@@ -18,7 +23,7 @@ do
 		data_input=${data_default_env[$index]}
 	fi
 	
-	sed -i -E "s/(${attributes_names_env[$index]}=).+$/\1$data_input/" ./../.env
+	sed -i -E "s/(${attributes_names_env[$index]}=).+$/\1$data_input/" .env
 done
 
 
