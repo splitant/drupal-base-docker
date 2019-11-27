@@ -23,7 +23,7 @@ do
 		data_input=${data_default_env[$index]}
 	fi
 	
-	sed -i -E "s/(${attributes_names_env[$index]}=).+$/\1$data_input/" .env
+	sed -i -E "s|(${attributes_names_env[$index]}=).*$|\1$data_input|g" .env
 done
 
 
