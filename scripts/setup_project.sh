@@ -30,6 +30,14 @@ drupal_projects=(
 	bootstrap
 )
 
+if [ -z "$HTTP_PROXY" ]; then
+	unset HTTP_PROXY
+	unset HTTPS_PROXY
+	unset HTTPS_PROXY_REQUEST_FULLURI
+	unset HTTP_PROXY
+	unset HTTP_PROXY
+fi
+
 composer create-project drupal-composer/drupal-project:8.x-dev . --no-interaction
 
 if [ "${DRUPAL_VER}" != "latest" ]; then
@@ -43,5 +51,8 @@ for project in "${drupal_projects[@]}"; do
 done
 
 composer require drush/drush
+
+git config --global user.name "splitant"
+git config --global user.email "axel.depret.pro@gmail.com"
 
 

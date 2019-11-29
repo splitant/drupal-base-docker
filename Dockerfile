@@ -11,7 +11,7 @@ RUN echo 'alias l="ls -CF"' >> ~/.bashrc
 RUN echo 'bak() { cp "$1"{,.bak};}' >> ~/.bashrc
 RUN echo 'mcd() { mkdir -p "$1"; cd "$1";}' >> ~/.bashrc
 
-ADD ./scripts/setup_project .
+ADD ./scripts/setup_project.sh .
 ADD .env .
 
 
