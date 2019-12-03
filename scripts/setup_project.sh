@@ -32,19 +32,20 @@ drupal_projects=(
 
 if [ -z "$HTTP_PROXY" ]; then
 	unset HTTP_PROXY
-	unset HTTPS_PROXY
 	unset HTTPS_PROXY_REQUEST_FULLURI
-	unset HTTP_PROXY
-	unset HTTP_PROXY
+	unset HTTP_PROXY_REQUEST_FULLURI
+	unset http_proxy
 fi
 
-composer create-project drupal-composer/drupal-project:8.x-dev . --no-interaction
+composer create-project drupal-composer/drupal-project:8.x-dev . --no-interaction --prefer-dist
 
 if [ "${DRUPAL_VER}" != "latest" ]; then
+	composer create-project drupal-composer/drupal-project:8.x-dev . --no-interaction --prefer-dist --no-install
 	sed -E -i 's#"drupal\/core":.+?8\..+?",?#"drupal/core": "'"${DRUPAL_VER}"'",#' composer.json
+	composer install --prefer-dist
+else
+	composer create-project drupal-composer/drupal-project:8.x-dev . --no-interaction --prefer-dist
 fi
-
-composer install
 
 for project in "${drupal_projects[@]}"; do
 	composer require drupal/$project
