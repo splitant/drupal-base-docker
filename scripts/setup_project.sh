@@ -1,4 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+if [ -z "$HTTP_PROXY" ]; then
+        unset HTTP_PROXY
+        unset HTTPS_PROXY_REQUEST_FULLURI
+        unset HTTP_PROXY_REQUEST_FULLURI
+        unset http_proxy
+fi
+
+cd /var/www/html
+
+sudo apk update --no-cache && sudo apk add --no-cache git zip vim curl util-linux
+
+echo 'alias ll="ls -alF"' >> ~/.bashrc
+echo 'alias la="ls -A"' >> ~/.bashrc
+echo 'alias l="ls -CF"' >> ~/.bashrc
+echo 'bak() { cp "$1"{,.bak};}' >> ~/.bashrc
+echo 'mcd() { mkdir -p "$1"; cd "$1";}' >> ~/.bashrc
 
 drupal_projects=(
 	webform
@@ -29,13 +46,6 @@ drupal_projects=(
 	emulsify
 	bootstrap
 )
-
-if [ -z "$HTTP_PROXY" ]; then
-	unset HTTP_PROXY
-	unset HTTPS_PROXY_REQUEST_FULLURI
-	unset HTTP_PROXY_REQUEST_FULLURI
-	unset http_proxy
-fi
 
 composer create-project drupal-composer/drupal-project:8.x-dev . --no-interaction --prefer-dist
 
