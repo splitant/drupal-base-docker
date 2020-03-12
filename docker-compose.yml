@@ -33,6 +33,8 @@ services:
       PHP_FPM_GROUP: wodby
       HTTP_PROXY: $HTTP_PROXY
       http_proxy: $HTTP_PROXY
+      HTTPS_PROXY: $HTTP_PROXY
+      https_proxy: $HTTP_PROXY
       HTTP_PROXY_REQUEST_FULLURI: $HTTPS_PROXY_REQUEST_FULLURI
       HTTPS_PROXY_REQUEST_FULLURI: $HTTPS_PROXY_REQUEST_FULLURI
       PHP_XDEBUG: 1
@@ -45,7 +47,8 @@ services:
       COMPOSER_DISABLE_XDEBUG_WARN: 1
     volumes:
       - ./web:/var/www/html
-      - ./scripts/setup_project.sh:/usr/local/bin/setup_project.sh  
+      - ./scripts/profile.d/setup_project.sh:/etc/profile.d/setup_project.sh
+      - ./scripts/profile.d/aliases.sh:/etc/profile.d/aliases.sh
 ## For XHProf and Xdebug profiler traces
 #      - files:/mnt/files
 
