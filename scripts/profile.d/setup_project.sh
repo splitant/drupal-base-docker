@@ -7,6 +7,8 @@ setup_project () {
       unset HTTPS_PROXY_REQUEST_FULLURI
       unset HTTP_PROXY_REQUEST_FULLURI
       unset http_proxy
+      unset HTTPS_PROXY
+      unset https_proxy
    fi
 
    cd /var/www/html
@@ -45,8 +47,6 @@ EOF
       emulsify
       bootstrap
    )
-
-   ls -la
 
    if [ "${DRUPAL_VER}" != "latest" ]; then
       composer -n create-project drupal/recommended-project:${DRUPAL_VER} --no-install ./
