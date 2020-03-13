@@ -46,6 +46,7 @@ EOF
       views_infinite_scroll
       emulsify
       bootstrap
+      adminimal_theme
    )
 
    if [ "${DRUPAL_VER}" != "latest" ]; then
@@ -66,6 +67,6 @@ EOF
    git config --global user.name "splitant"
    git config --global user.email "axel.depret.pro@gmail.com"
 
-   drush si standard --db-url=${DB_DRIVER}://root:${DB_ROOT_PASSWORD}@${DB_HOST}/${DB_NAME} -y -vvv
+   drush si standard --db-url=${DB_DRIVER}://root:${DB_ROOT_PASSWORD}@${DB_HOST}/${DB_NAME} -y 
    drush upwd admin admin
 }
