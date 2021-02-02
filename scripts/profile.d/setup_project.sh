@@ -32,7 +32,6 @@ EOF
       inline_entity_form
       fontawesome_menu_icons
       search_api
-      search_api_solr
       facets
       metatag
       pathauto
@@ -44,7 +43,6 @@ EOF
       recaptcha
       better_exposed_filters
       views_infinite_scroll
-      emulsify
       bootstrap
       adminimal_theme
    )
