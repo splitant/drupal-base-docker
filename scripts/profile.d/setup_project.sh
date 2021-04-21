@@ -19,32 +19,28 @@ setup_project () {
 EOF
 
    drupal_projects=(
-      webform
-      admin_toolbar
-      google_analytics
-      config_split
-      devel
-      ds
-      fontawesome
-      linkit
-      field_group
-      paragraphs
-      inline_entity_form
-      fontawesome_menu_icons
-      search_api
-      facets
-      metatag
-      pathauto
-      token
-      redirect
-      robotstxt
-      simple_sitemap
-      sharethis
-      recaptcha
-      better_exposed_filters
-      views_infinite_scroll
-      bootstrap
-      adminimal_theme
+        admin_toolbar
+        adminimal_theme
+        bootstrap
+        config_split
+        devel
+        ds
+        facets
+        field_group
+        fontawesome
+        fontawesome_menu_icons
+        google_analytics
+        metatag
+        paragraphs
+        pathauto
+        recaptcha
+        redirect
+        robotstxt
+        search_api
+        simple_sitemap
+        token
+        views_infinite_scroll
+        webform
    )
 
    if [ "${DRUPAL_VER}" != "latest" ]; then
